@@ -1,0 +1,46 @@
+{% extends "link_plant/_base.html" %}
+
+{% block content %}
+<h1 class="text-4xl text-center my-10 font-bold">All My Links</h1>
+<div class="lg:w-3/4 w-full mx-auto overflow-auto">
+  <table class="table-auto w-full text-left border-collapse border border-gray-200">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="px-4 py-3 font-medium text-gray-700 text-sm border border-gray-200">Text</th>
+        <th class="px-4 py-3 font-medium text-gray-700 text-sm border border-gray-200">URL</th>
+        <th class="px-4 py-3 font-medium text-gray-700 text-sm border border-gray-200">Profile</th>
+        <th class="px-4 py-3 font-medium text-gray-700 text-sm border border-gray-200">Edit</th>
+        <th class="px-4 py-3 font-medium text-gray-700 text-sm border border-gray-200">Delete</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for link in object_list %}
+      <tr class="hover:bg-gray-50">
+        <td class="px-4 py-3 border border-gray-200">{{ link.text }}</td>
+        <td class="px-4 py-3 border border-gray-200">
+          <a href="{{ link.url }}" target="_blank" class="text-blue-500 hover:underline">
+            {{ link.url }}
+          </a>
+        </td>
+        <td class="px-4 py-3 border border-gray-200">
+          <a href="{% url "profile" link.profile.slug %}" target="_blank">
+            {{ link.profile.name }}
+          </a>
+        </td>
+        <td class="px-4 py-3 border border-gray-200 underline text-blue-600">
+          <a href="{% url 'link-update' link.id %}">Edit</a>
+        </td>
+        <td class="px-4 py-3 border border-gray-200 underline text-red-600">
+          <a href="{% url 'link-delete' link.id %}">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'link-create' %}" class="block mt-6 py-2 w-full border rounded border-gray-400 text-center text-gray-500 hover:bg-gray-100">
+    Add New +
+  </a>
+</div>
+{% endblock content %}
+    
