@@ -1,11 +1,22 @@
 {% extends "link_plant/_base.html" %}
 {% load tailwind_filters %}
+
 {% block content %} 
-<h1 class="text-4xl">Link Form</h1>
-<hr class="my-4 ">
-<form action="" method="post">
-    {% csrf_token %}
-    {{form|crispy}}
-    <input type="submit" value="Save Link" class="px-5 py-3 bg-blue-200 hover:cursor-pointer hover:bg-blue-400 rounded-2xl">
-</form>
+<div class="max-w-lg mx-auto bg-white p-6 shadow-lg rounded-lg">
+    <!-- Title -->
+    <h1 class="text-4xl font-bold text-gray-800 text-center mb-6">Link Form</h1>
+    
+    <hr class="my-4 border-gray-300">
+    
+    <!-- Form -->
+    <form action="" method="post" class="space-y-4">
+        {% csrf_token %}
+        {{ form|crispy }}
+        
+        <!-- Save Button -->
+        <input type="submit" value="Save Link" 
+               class="w-full bg-blue-500 text-white py-3 rounded-lg shadow-md text-lg 
+                      hover:bg-blue-600 transition duration-300 cursor-pointer">
+    </form>
+</div>
 {% endblock content %}

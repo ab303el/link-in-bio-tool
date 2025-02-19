@@ -6,7 +6,7 @@ from .models import Profile , Link
 # Create your views here.
 class LinkListView(ListView):
     model = Link
-    # template called mode_list.html -> link_list.html 
+    # template called model_list.html -> link_list.html 
     template_name = 'link_plant/link_list.html'  # Ensure this matches the template path
 
 class LinkCreateView(CreateView):
@@ -21,7 +21,9 @@ class LinkUpdateView(UpdateView):
 
 class LinkDeleteView(DeleteView):
     model = Link
-    content_type = reverse_lazy('link-list')
+    template_name = 'link_plant/link_confirm_delete.html'
+    success_url = reverse_lazy('link-list')
+
 
 def profile_view(request , profile_slug):
     profile = get_object_or_404(Profile , slug = profile_slug)
